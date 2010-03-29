@@ -51,7 +51,7 @@ void c7e3_report()
 
 int main(void)
 {
-  c7e3_assert(1 == 0, "a");
-  c7e3_assert(1 == 2, "b");
+  c7e3_assert(1 == 1, "a");
+  c7e3_assert(2 == 2, "b");
   c7e3_report();
 }

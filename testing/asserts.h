@@ -25,7 +25,7 @@ typedef struct c7e3_Message_ {
   struct c7e3_Message_* next;
 } c7e3_Message;
 
-/* Global contain for errors. */
+/* Global container for errors. */
 c7e3_Message* c7e3_errors = NULL;
 
 void c7e3_assert(int statement, char* message);
