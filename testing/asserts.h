@@ -20,9 +20,9 @@ specific language governing permissions and limitations
 under the License.
 */
 
-typedef struct c7e3Message {
+typedef struct c7e3_Message_ {
   char* errorMessage;
-  struct c7e3Message* next;
+  struct c7e3_Message_* next;
 } c7e3_Message;
 
 /* Global contain for errors. */

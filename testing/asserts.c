@@ -24,8 +24,6 @@ under the License.
 #include<stdlib.h>
 #include"asserts.h"
 
-c7e3_Message* first = NULL;
-
 void c7e3_assert(int statement, char* message)
 {
   if (!statement)
@@ -53,7 +51,7 @@ void c7e3_report()
 
 int main(void)
 {
-  c7e3_assert(1 == 1, "a");
+  c7e3_assert(1 == 0, "a");
   c7e3_assert(1 == 2, "b");
   c7e3_report();
 }
