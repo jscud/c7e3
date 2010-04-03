@@ -26,6 +26,7 @@ under the License.
 #define C7E3_MAX_HTML_CHAR_LEN 15
 
 short c7e3_numUtf8Bytes(char utf8Byte);
+
 /* Converts the UTF8 character provided in the first string (1-4 bytes)
    and places it into the second string provided. The second string
    must have space for up to C7E3_MAX_HTML_CHAR_LEN characters.
