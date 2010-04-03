@@ -22,8 +22,12 @@ under the License.
 
 /* Some unicode characters are represented in the form &#21494; so a buffer
    which should hold the HTML character should be able to hold as mush as
-   MAX_HTML_CHAR_LEN bytes. */
-#define MAX_HTML_CHAR_LEN 15
+   C7E3_MAX_HTML_CHAR_LEN bytes. */
+#define C7E3_MAX_HTML_CHAR_LEN 15
 
 short c7e3_numUtf8Bytes(char utf8Byte);
-int c7e3_utf8ToHtml(char* utf8, char* html); 
+/* Converts the UTF8 character provided in the first string (1-4 bytes)
+   and places it into the second string provided. The second string
+   must have space for up to C7E3_MAX_HTML_CHAR_LEN characters.
+   Returns the number of characters placed into html. */
+short c7e3_utf8ToHtml(char* utf8, char* html); 

@@ -20,12 +20,15 @@ specific language governing permissions and limitations
 under the License.
 */
 
-
-/* defines MAX_HTML_CHAR_LEN as 15 */
+#include <string.h>
+#include <stdio.h>
+#include <stdint.h>
+/* defines C7E3_MAX_HTML_CHAR_LEN as 15 */
 #include "html_util.h"
 
 
-short c7e3_numUtf8Bytes(char utf8Byte) {
+short c7e3_numUtf8Bytes(char utf8Byte)
+{
   /* The pattern for the first byte in a UTf8 character:
      0xxx xxxx = 1 byte
      110x xxxx = 2 bytes
@@ -45,6 +48,55 @@ short c7e3_numUtf8Bytes(char utf8Byte) {
   return 0;
 }
 
-int c7e3_utf8ToHtml(char* utf8, char* html) {
-  return 0;
+short c7e3_utf8ToHtml(char* utf8, char* html)
+{
+  short charLen = c7e3_numUtf8Bytes(utf8[0]);
+  short charactersEmitted = 0;
+  /* The unicode representation of the UTF8 character. */
+  uint32_t codePoint = 0;
+
+  if (charLen == 1) {
+    /* This is an ascii character. */
+    switch (utf8[0]) {
+      case '<':
+        strcpy(html, "&lt;");
+        charactersEmitted = 4;
+        break;
+      case '>':
+        strcpy(html, "&gt;");
+        charactersEmitted = 4;
+        break;
+      case '"':
+        strcpy(html, "&quot;");
+        charactersEmitted = 6;
+        break;
+      default:
+        html[0] = utf8[0];
+        charactersEmitted = 1;
+    }
+  } else if (charLen != 0) {
+    /* Convert 2-4 byte long UTF8 charcters. */
+    switch (charLen) {
+      case 2:
+        /* 110yyyxx 10xxxxxx */
+        codePoint = (0x3F & utf8[1]) | ((0x1F & utf8[0]) << 6);
+        break;
+      case 3:
+        /* 1110yyyy 10yyyyxx 10xxxxxx */
+        codePoint = (0x3F & utf8[2]) | ((0x3F & utf8[1]) << 6) |
+                    ((0x0F & utf8[0]) << 12);
+        break;
+      case 4:
+        /* 11110zzz 10zzyyyy 10yyyyxx 10xxxxxx */
+        codePoint = (0x3F & utf8[3]) | ((0x3F & utf8[2]) << 6) |
+                    ((0x3F & utf8[1]) << 12) | ((0x07 & utf8[0]) << 18);
+        break;
+    }
+    sprintf(html, "&#%d;", codePoint);
+    charactersEmitted = strlen(html);
+  }
+  
+  /* Terminate the HTML string. */
+  html[charactersEmitted] = '\0';
+  return charactersEmitted;
 }
