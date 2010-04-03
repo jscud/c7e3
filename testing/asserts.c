@@ -24,6 +24,9 @@ under the License.
 #include<stdlib.h>
 #include"asserts.h"
 
+/* Global container for errors. */
+c7e3_Message* c7e3_errors = NULL;
+
 void c7e3_assert(int statement, char* message)
 {
   if (!statement)
@@ -47,11 +50,4 @@ void c7e3_report()
     printf("Error: %s\n\n", head->errorMessage);
     head = head->next;
   }
-}
-
-int main(void)
-{
-  c7e3_assert(1 == 1, "1 should equal 1");
-  c7e3_assert(2 == 2, "2 should equal 2");
-  c7e3_report();
 }

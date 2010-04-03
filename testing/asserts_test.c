@@ -1,4 +1,4 @@
-/* asserts.h */
+/* asserts_test.c */
 
 /* Copyright 2010 Jeffrey William Scudder
 
@@ -20,10 +20,12 @@ specific language governing permissions and limitations
 under the License.
 */
 
-typedef struct c7e3_Message_ {
-  char* errorMessage;
-  struct c7e3_Message_* next;
-} c7e3_Message;
+#include"asserts.h"
 
-void c7e3_assert(int statement, char* message);
-void c7e3_report();
+int main(void)
+{
+  c7e3_assert(1 == 1, "1 should equal 1");
+  c7e3_assert(2 == 2, "2 should equal 2");
+  c7e3_report();
+  return 0;
+}
