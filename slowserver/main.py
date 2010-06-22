@@ -19,7 +19,7 @@ from google.appengine.ext.webapp import util
 
 
 def FilePath(path):
-  """Converts a series of strings into a path to a template file."""
+  """The requested path into a local file path."""
 
   return os.path.join(os.path.dirname(__file__), 'files', path[1:])
 
