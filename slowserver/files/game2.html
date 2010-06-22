@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <script src="/loader.js?delay=100&contenttype=text/javascript"></script>
+    <script>
+      loader.loadScript('/testa.js?delay=500&contenttype=text/javascript');
+      loader.loadScript('/testb.js?delay=400&contenttype=text/javascript');
+    </script>
+    <script>
+      loader.whenNodePresent('output',
+        function() {
+          var output = document.getElementById('output');
+          loader.whenReady(function() {return window['a'];},
+              function() {
+                output.innerHTML += 'a is ' + a + '<br>';
+              }); 
+          loader.whenReady(function() {return window['b'];},
+            function() {
+              output.innerHTML += 'b is ' + b + '<br>';
+            }); 
+          loader.whenReady(function() {return window['c'];},
+            function() {
+              output.innerHTML += 'c is ' + c + '<br>';
+            }); 
+          loader.whenReady(function() {return window['d'];},
+            function() {
+              output.innerHTML += 'd is ' + d + '<br>';
+            }); 
+          loader.whenReady(function() {return window['e'];},
+            function() {
+              output.innerHTML += 'e is ' + e + '<br>';
+            }); 
+        })
+    </script>
+    <script>
+      loader.loadScript('/testc.js?delay=300&contenttype=text/javascript');
+    </script>
+  </head>
+  <body>
+    <script>
+      loader.loadScript('/testd.js?delay=200&contenttype=text/javascript');
+    </script>
+    <div id="output"></div>
+    <script>
+      loader.loadScript('/teste.js?delay=100&contenttype=text/javascript');
+      loader.loadScript('/testa.js?delay=500&contenttype=text/javascript');
+    </script>
+  </body>
+</html>

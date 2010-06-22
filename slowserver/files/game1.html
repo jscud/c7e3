@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <script src="/testa.js?delay=500&contenttype=text/javascript"></script>
+    <script src="/testb.js?delay=400&contenttype=text/javascript"></script>
+    <script>
+      function init() {
+        document.getElementById('output');
+        output.innerHTML = [
+          'a is ' + a,
+          'b is ' + b,
+          'c is ' + c,
+          'd is ' + d,
+          'e is ' + e
+        ].join('<br>');
+      }
+    </script>
+    <script src="/testc.js?delay=300&contenttype=text/javascript"></script>
+  </head>
+  <body onload="init()">
+    <script src="/testd.js?delay=200&contenttype=text/javascript"></script>
+    <div id="output"></div>
+    <script src="/teste.js?delay=100&contenttype=text/javascript"></script>
+    <script src="/testa.js?delay=500&contenttype=text/javascript"></script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <script src="/loader.js?delay=100&contenttype=text/javascript"></script>
+    <script>
+      function loadAndNotifyWhenLoaded(variable, delay) {
+        loader.loadScript('/test' + variable + '.js?contenttype=text/javascript&delay=' + delay);
+        loader.whenVariableTrue(variable, function() {
+          loader.whenNodeReady('output', function() {
+            var newP = document.createElement('p');
+            newP.innerHTML = 'Variable ' + variable + ' has loaded successfully.';
+            document.getElementById('output').appendChild(newP);
+          });
+        });
+      }
+    </script>
+    <script>
+      loadAndNotifyWhenLoaded('a', 100);
+      loadAndNotifyWhenLoaded('c', 100);
+    </script>
+  </head>
+  <body>
+    <script>
+    </script>
+    <div id="output"></div>
+    <script>
+      loadAndNotifyWhenLoaded('b', 100);
+    </script>
+  </body>
+</html>
