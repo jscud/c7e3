@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <script>
+      var startTime = new Date().getTime();
+    </script>
+    <script src="/xindex.js?delay=200"></script>
+    <script src="/testa.js?delay=200"></script>
+    <script>
+      simpleLoad('x');
+
+      function init() {
+        document.getElementById('start').innerHTML = startTime;
+        renderTime('end');
+      }
+    </script>
+    <script src="/testb.js?delay=200"></script>
+  </head>
+  <body onload="init()">
+    <div id="start"></div>
+    <div id="end"></div>
+    <script src="/testc.js?delay=200"></script>
+  </body>
+</html>
