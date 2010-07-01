@@ -29,27 +29,39 @@ window.loader.whenReady=loader. c; window.loader.
         loader.loadScript(index['x']);
       });
 
-      loader.whenReady(function() {return document.getElementById('start');},
-        function() {
-          document.getElementById('start').innerHTML = startTime;
-        });
+      var onloadTime;
 
       loader.whenReady(
         function() {
-          return window['x'] && document.getElementById('end');
+          return window['x'] && document.getElementById('xloaded');
         },
         function() {
-          renderTime('end');
+          renderX('xloaded');
+        });
+      
+      loader.whenReady(
+        function() {
+          return window['y'] && document.getElementById('yloaded');
+        },
+        function() {
+          renderY('yloaded');
         });
       
       loader.loadScript('/testb.js?delay=200');
+
+      function displayOnload() {
+        onloadTime = new Date().getTime();
+        document.getElementById('start').innerHTML = 'From start to onload: ' + (onloadTime - startTime);
+      }
     </script>
   </head>
-  <body>
+  <body onload="displayOnload()">
     <div id="start"></div>
-    <div id="end"></div>
+    <div id="xloaded"></div>
+    <div id="yloaded"></div>
     <script>
       loader.loadScript('/testc.js?delay=200');
+      loader.loadScript('/y.js?delay=200');
     </script>
   </body>
 </html>

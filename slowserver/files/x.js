@@ -1,5 +1,5 @@
 window['x'] = true;
 
-function renderTime(nodeId) {
-  document.getElementById(nodeId).innerHTML = new Date().getTime();
+function renderX(nodeId) {
+  document.getElementById(nodeId).innerHTML = 'From start to x loaded: ' + (new Date().getTime() - startTime);
 }

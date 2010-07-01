@@ -9,15 +9,21 @@
       simpleLoad('x');
 
       function init() {
-        document.getElementById('start').innerHTML = startTime;
-        renderTime('end');
+        var onloadTime = new Date().getTime(); 
+        document.getElementById('start').innerHTML = 'From start to onload: ' + (onloadTime - startTime);
+        renderX('xloaded');
+        renderY('yloaded');
       }
     </script>
     <script src="/testb.js?delay=200"></script>
   </head>
   <body onload="init()">
     <div id="start"></div>
-    <div id="end"></div>
+    <script>
+      simpleLoad('y');
+    </script>
+    <div id="xloaded"></div>
+    <div id="yloaded"></div>
     <script src="/testc.js?delay=200"></script>
   </body>
 </html>

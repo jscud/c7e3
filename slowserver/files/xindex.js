@@ -1,5 +1,6 @@
 window['index'] = {
-  'x': '/x.js?delay=200'
+  'x': '/x.js?delay=200',
+  'y': '/y.js?delay=200'
 };
 
 function simpleLoad(name) {
