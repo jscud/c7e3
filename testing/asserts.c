@@ -41,6 +41,7 @@ void c7e3_assert(int statement, char* message)
 void c7e3_report()
 {
   c7e3_Message* head = c7e3_errors;
+  c7e3_Message* prev;
   if (head == NULL)
   {
     printf("All test passed.\n\n");
@@ -48,6 +49,9 @@ void c7e3_report()
   while(head != NULL)
   {
     printf("Error: %s\n\n", head->errorMessage);
+    prev = head;
     head = head->next;
+    free(prev);
   }
+  c7e3_errors = NULL;
 }
