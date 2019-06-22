@@ -26,4 +26,4 @@ typedef struct c7e3_Message_ {
 } c7e3_Message;
 
 void c7e3_assert(int statement, char* message);
-void c7e3_report();
+void c7e3_report(void);

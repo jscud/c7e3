@@ -38,7 +38,7 @@ void c7e3_assert(int statement, char* message)
   }
 }
 
-void c7e3_report()
+void c7e3_report(void)
 {
   c7e3_Message* head = c7e3_errors;
   c7e3_Message* prev;
